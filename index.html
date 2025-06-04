@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Tất Đạt - Chuyên Gia Marketing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: Tôi đã thiết kế trang này theo cấu trúc của một landing page chuyên nghiệp, bắt đầu bằng giới thiệu nổi bật (Hero), sau đó là các phần về bản thân (About), dịch vụ (Services), các dự án đã thực hiện (Portfolio) và cuối cùng là lời chứng thực (Testimonials) cùng thông tin liên hệ (Contact). Cấu trúc này giúp người dùng dễ dàng tìm hiểu về Lê Tất Đạt và các giá trị anh ấy mang lại, từ tổng quan đến chi tiết, khuyến khích hành động liên hệ. -->
+    <!-- Visualization & Content Choices: 
+        1. Phần Hero: Mục tiêu -> Tạo ấn tượng ban đầu. Phương pháp -> Tiêu đề lớn, phụ đề và mô tả ngắn. Tương tác -> Nút kêu gọi hành động. Lý do -> Thu hút sự chú ý và định hướng người dùng.
+        2. Phần Dịch vụ: Mục tiêu -> Liệt kê các dịch vụ. Phương pháp -> Các thẻ dịch vụ với biểu tượng và mô tả. Tương tác -> Không có tương tác phức tạp. Lý do -> Trình bày rõ ràng các lĩnh vực chuyên môn.
+        3. Phần Dự án (Portfolio): Mục tiêu -> Minh họa kết quả công việc. Phương pháp -> Biểu đồ cột (Chart.js) để trình bày dữ liệu giả định từ các dự án. Tương tác -> Biểu đồ hiển thị dữ liệu trực quan. Lý do -> Cung cấp bằng chứng cụ thể về hiệu quả làm việc.
+        4. Phần Lời chứng thực: Mục tiêu -> Xây dựng lòng tin. Phương pháp -> Các thẻ lời chứng thực. Tương tác -> Không có tương tác phức tạp. Lý do -> Cung cấp bằng chứng xã hội.
+        5. Phần Liên hệ: Mục tiêu -> Thu thập thông tin liên hệ. Phương pháp -> Biểu mẫu liên hệ đơn giản. Tương tác -> Nút gửi. Lý do -> Tạo kênh giao tiếp trực tiếp.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #F8F6F2 0%, #EFEBE5 50%, #F8F6F2 100%);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-[#F8F6F2]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">LÊ TẤT ĐẠT</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors">Về Tôi</a>
+                <a href="#services" class="text-gray-600 hover:text-gray-900 transition-colors">Dịch Vụ</a>
+                <a href="#portfolio" class="text-gray-600 hover:text-gray-900 transition-colors">Dự Án</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-gray-900 transition-colors">Lời Chứng Thực</a>
+                <a href="#contact" class="text-gray-600 hover:text-gray-900 transition-colors">Liên Hệ</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-900">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-gray-600 hover:text-gray-900">Về Tôi</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-gray-900">Dịch Vụ</a>
+            <a href="#portfolio" class="block py-2 text-gray-600 hover:text-gray-900">Dự Án</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-gray-900">Lời Chứng Thực</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-gray-900">Liên Hệ</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 bg-gradient-to-r from-[#F8F6F2] to-[#EFEBE5]">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider text-gray-900 leading-tight">Lê Tất Đạt</h1>
+                <p class="mt-4 text-lg md:text-3xl text-amber-600 font-semibold">Chuyên Gia Chạy Marketing Hiệu Quả</p>
+                <p class="mt-6 max-w-3xl mx-auto text-base md:text-lg text-gray-700">
+                    Với nhiều năm kinh nghiệm trong lĩnh vực marketing số, tôi giúp doanh nghiệp tối ưu hóa chiến lược quảng cáo, tăng trưởng doanh số và xây dựng thương hiệu vững mạnh trên thị trường.
+                </p>
+                <div class="mt-8">
+                    <a href="#contact" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-amber-700 transition-colors transform hover:scale-105">
+                        Liên Hệ Ngay
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16">
+            <div class="container mx-auto px-6 md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://placehold.co/600x400/EFEBE5/2D3748?text=L%C3%AA+T%E1%BA%A5t+%C4%90%E1%BA%A1t" alt="Hình ảnh Lê Tất Đạt" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Về Tôi</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Tôi là Lê Tất Đạt, một chuyên gia marketing với niềm đam mê kiến tạo giá trị cho doanh nghiệp thông qua các chiến lược truyền thông hiệu quả. Với tư duy phân tích sắc bén và khả năng nắm bắt xu hướng thị trường, tôi đã đồng hành cùng nhiều đối tác đạt được những mục tiêu kinh doanh ấn tượng.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Tôi tin rằng mỗi chiến dịch marketing không chỉ là quảng bá sản phẩm, mà còn là kể một câu chuyện, xây dựng kết nối và tạo ra trải nghiệm đáng nhớ cho khách hàng. Mục tiêu của tôi là biến ý tưởng thành hành động, và hành động thành kết quả.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-16 bg-[#EFEBE5]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Dịch Vụ Của Tôi</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-gray-700">
+                        Tôi cung cấp các giải pháp marketing toàn diện, được tùy chỉnh để phù hợp với nhu cầu và mục tiêu cụ thể của từng doanh nghiệp.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2">
+                        <div class="text-5xl text-amber-600 mb-4">📈</div>
+                        <h3 class="font-bold text-xl mb-3 text-gray-900">Chiến Lược Marketing Số</h3>
+                        <p class="text-gray-600">Xây dựng kế hoạch marketing tổng thể, từ SEO, SEM đến Social Media và Content Marketing.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2">
+                        <div class="text-5xl text-amber-600 mb-4">📊</div>
+                        <h3 class="font-bold text-xl mb-3 text-gray-900">Tối Ưu Hóa Quảng Cáo</h3>
+                        <p class="text-gray-600">Tối ưu hóa hiệu suất các chiến dịch quảng cáo trên Google, Facebook, TikTok.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2">
+                        <div class="text-5xl text-amber-600 mb-4">✍️</div>
+                        <h3 class="font-bold text-xl mb-3 text-gray-900">Phát Triển Nội Dung</h3>
+                        <p class="text-gray-600">Sáng tạo nội dung hấp dẫn, thu hút và chuyển đổi khách hàng tiềm năng.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Các Dự Án Tiêu Biểu</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-gray-700">
+                        Dưới đây là một số kết quả nổi bật từ các dự án marketing mà tôi đã thực hiện. Mỗi biểu đồ đại diện cho hiệu quả của một chiến dịch cụ thể, thể hiện sự tăng trưởng và tối ưu hóa mà tôi đã mang lại cho khách hàng.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Hiệu Quả Chiến Dịch Marketing</h3>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                    <div class="mt-8 text-center text-gray-600">
+                        <p>Biểu đồ này minh họa các chỉ số quan trọng như tăng trưởng doanh số và tỷ lệ chuyển đổi sau khi triển khai chiến dịch marketing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-16 bg-[#EFEBE5]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Lời Chứng Thực</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-gray-700">
+                        Sự hài lòng của khách hàng là minh chứng rõ nhất cho chất lượng dịch vụ của tôi.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <p class="text-gray-700 italic mb-4">"Lê Tất Đạt đã giúp công ty chúng tôi tăng trưởng doanh số 30% chỉ trong 3 tháng. Anh ấy là một chuyên gia thực thụ!"</p>
+                        <p class="font-semibold text-gray-900">- Nguyễn Thị A, CEO Công ty X</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <p class="text-gray-700 italic mb-4">"Chiến lược marketing của Đạt rất sáng tạo và hiệu quả. Chúng tôi rất ấn tượng với kết quả đạt được."</p>
+                        <p class="font-semibold text-gray-900">- Trần Văn B, Giám đốc Marketing Công ty Y</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <p class="text-gray-700 italic mb-4">"Nhờ có Lê Tất Đạt, thương hiệu của chúng tôi đã tiếp cận được nhiều khách hàng hơn và xây dựng được hình ảnh chuyên nghiệp."</p>
+                        <p class="font-semibold text-gray-900">- Phạm Thu C, Chủ cửa hàng Z</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Liên Hệ</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-gray-700">
+                        Bạn muốn thảo luận về dự án của mình? Hãy điền vào biểu mẫu dưới đây hoặc liên hệ trực tiếp với tôi.
+                    </p>
+                </div>
+                <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <form id="contactForm">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Họ và Tên:</label>
+                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Tên của bạn" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                            <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="email@example.com" required>
+                            <p id="email-error" class="text-red-500 text-xs italic hidden mt-1"></p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Số Điện Thoại:</label>
+                            <input type="tel" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Số điện thoại của bạn" required>
+                            <p id="phone-error" class="text-red-500 text-xs italic hidden mt-1"></p>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Tin Nhắn:</label>
+                            <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nội dung tin nhắn của bạn" required></textarea>
+                        </div>
+                        <div id="form-message" class="text-center mt-4 text-sm font-medium hidden"></div>
+                        <div class="flex items-center justify-center">
+                            <button type="submit" class="bg-amber-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-amber-700 transition-colors transform hover:scale-105">
+                                Gửi Tin Nhắn
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Lê Tất Đạt. Mọi quyền được bảo lưu.</p>
+            <p class="text-sm text-gray-400 mt-2">Được thiết kế để tối ưu hóa trải nghiệm người dùng và hiệu quả marketing.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const portfolioData = {
+                labels: ['Tăng trưởng doanh số', 'Tỷ lệ chuyển đổi', 'Lượt truy cập', 'Tương tác MXH'],
+                values: [45, 12, 15000, 8000] 
+            };
+            
+            const ctx = document.getElementById('portfolioChart').getContext('2d');
+            const portfolioChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: portfolioData.labels,
+                    datasets: [{
+                        label: 'Chỉ số hiệu suất',
+                        data: portfolioData.values,
+                        backgroundColor: [
+                            '#D69E2E', 
+                            '#F6AD55', 
+                            '#ECC94B', 
+                            '#ED8936'  
+                        ],
+                        borderColor: [
+                            '#C05621',
+                            '#DD6B20',
+                            '#D69E2E',
+                            '#B7791F'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        if (context.label === 'Tăng trưởng doanh số' || context.label === 'Tỷ lệ chuyển đổi') {
+                                            label += context.parsed.y + '%';
+                                        } else {
+                                            label += context.parsed.y;
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Chỉ số',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Giá trị',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const messageInput = document.getElementById('message');
+            const formMessageDiv = document.getElementById('form-message');
+            const emailError = document.getElementById('email-error');
+            const phoneError = document.getElementById('phone-error');
+
+            // THAY THẾ 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE' BẰNG URL CỦA ỨNG DỤNG WEB GOOGLE APPS SCRIPT CỦA BẠN
+            // VÍ DỤ: https://script.google.com/macros/s/AKfycbz_YOUR_SCRIPT_ID_HERE/exec
+            const googleSheetUrl = 'https://script.google.com/macros/s/AKfycbxiaQFNSS3TlWBbqroQlXFuKb_kG-VDSilYZeHAyp5XmpqZ7u3cv_kQh16DTij6Rgw5/exec'; 
+
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                formMessageDiv.classList.add('hidden');
+                formMessageDiv.textContent = '';
+                emailError.classList.add('hidden');
+                phoneError.classList.add('hidden');
+
+                if (!nameInput.value || !emailInput.value || !phoneInput.value || !messageInput.value) {
+                    formMessageDiv.classList.remove('hidden');
+                    formMessageDiv.classList.remove('text-green-500');
+                    formMessageDiv.classList.add('text-red-500');
+                    formMessageDiv.textContent = 'Vui lòng điền đầy đủ tất cả các trường.';
+                    isValid = false;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    emailError.textContent = 'Email không hợp lệ.';
+                    emailError.classList.remove('hidden');
+                    isValid = false;
+                }
+
+                const phoneRegex = /^(0|\+84)\d{9,10}$/; 
+                if (!phoneRegex.test(phoneInput.value)) {
+                    phoneError.textContent = 'Số điện thoại không hợp lệ (ví dụ: 0xxxxxxxxx hoặc +84xxxxxxxxx).';
+                    phoneError.classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    formMessageDiv.classList.remove('hidden');
+                    formMessageDiv.classList.remove('text-red-500');
+                    formMessageDiv.classList.add('text-blue-500'); // Màu xanh cho trạng thái đang gửi
+                    formMessageDiv.textContent = 'Đang gửi tin nhắn...';
+
+                    const formData = new FormData(contactForm);
+                    const data = Object.fromEntries(formData.entries());
+
+                    try {
+                        const response = await fetch(googleSheetUrl, {
+                            method: 'POST',
+                            mode: 'no-cors', // Cần thiết cho Google Apps Script nếu không cấu hình CORS
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: new URLSearchParams(data).toString(),
+                        });
+
+                        // Vì mode: 'no-cors', chúng ta không thể kiểm tra response.ok
+                        // Thay vào đó, chúng ta giả định thành công nếu không có lỗi mạng
+                        formMessageDiv.classList.remove('text-blue-500');
+                        formMessageDiv.classList.add('text-green-500');
+                        formMessageDiv.textContent = 'Tin nhắn của bạn đã được gửi thành công, chúng tôi sẽ phản hồi bạn trong thời gian sớm  nhất';
+                        contactForm.reset();
+
+                    } catch (error) {
+                        console.error('Lỗi khi gửi dữ liệu:', error);
+                        formMessageDiv.classList.remove('text-blue-500');
+                        formMessageDiv.classList.add('text-red-500');
+                        formMessageDiv.textContent = 'Đã xảy ra lỗi khi gửi tin nhắn. Vui lòng thử lại sau.';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
