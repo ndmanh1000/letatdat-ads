@@ -1,563 +1,1097 @@
 <!DOCTYPE html>
+
 <html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lê Tất Đạt - Marketing Sáng Tạo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        /* Base styles from the reference site */
-        body {
-            font-family: 'Karla', sans-serif;
-            color: #1a1a1a;
-            background-color: #fcfcfc;
-            scroll-behavior: smooth;
-        }
 
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-        }
-        
-        /* Container and padding */
-        .page-container {
-            max-width: 1300px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
+<meta charset="UTF-8">
 
-        /* Header */
-        header {
-            background-color: transparent;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            transition: background-color 0.3s ease;
-        }
-        .header-scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .nav-link {
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            background-color: #1a1a1a;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Hero section - asymmetric layout */
-        #hero {
-            padding-top: 10rem;
-            padding-bottom: 8rem;
-        }
-        #hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-        }
-        @media (min-width: 768px) {
-            #hero h1 {
-                font-size: 6rem;
-            }
-        }
-        
-        .hero-image-wrap {
-            position: relative;
-            transform: rotate(-2deg);
-            z-index: 10;
-        }
-        .hero-image-wrap:hover {
-            transform: rotate(0deg);
-        }
+<title>Lê Tất Đạt - Chuyên Gia Marketing</title>
 
-        /* Content section - unique layout */
-        .content-section {
-            display: grid;
-            gap: 2rem;
-        }
-        @media (min-width: 768px) {
-            .content-section {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .content-block {
-            padding: 2rem;
-        }
-        .content-block.image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .content-block.image img {
-            width: 100%;
-            height: auto;
-        }
-        .content-block.text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        .text-block-large {
-            padding: 4rem 2rem;
-            text-align: center;
-            max-width: 900px;
-            margin: auto;
-        }
-        .text-block-large h2 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        /* Services section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-        @media (min-width: 768px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        .service-card {
-            background-color: #fff;
-            padding: 2rem;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-        .service-card:hover {
-            border-color: #1a1a1a;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-        /* Testimonials */
-        .testimonial-card {
-            background-color: #fff;
-            padding: 2rem;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-        .testimonial-card:hover {
-            border-color: #1a1a1a;
-            transform: scale(1.02);
-        }
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* Chart section */
-        .chart-wrapper {
-            background-color: #fff;
-            padding: 2.5rem;
-            border: 1px solid #e0e0e0;
-        }
-        
-        /* Contact Form */
-        .contact-form-wrapper {
-            background-color: #f0f0f0;
-            padding: 3rem;
-            box-shadow: none;
-            border: none;
-            max-width: 600px;
-        }
-        #contactForm input, #contactForm textarea {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 1rem;
-            transition: all 0.2s ease;
-        }
-        #contactForm input:focus, #contactForm textarea:focus {
-            border-color: #1a1a1a;
-            outline: none;
-        }
-        .btn-black {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 0.75rem 2.5rem;
-            transition: all 0.3s ease;
-        }
-        .btn-black:hover {
-            background-color: #4a4a4a;
-        }
-        
-        /* Utility */
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .hidden-mobile {
-            display: none;
-        }
-        @media (min-width: 768px) {
-            .hidden-mobile {
-                display: block;
-            }
-        }
-    </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+
+body {
+
+font-family: 'Inter', sans-serif;
+
+scroll-behavior: smooth;
+
+/* Xóa hoặc chú thích dòng gradient này */
+
+background: linear-gradient(135deg, #E0F2F7 0%, #B3E0EE 50%, #E0F2F7 100%);
+
+background-size: 200% 200%;
+
+/* animation: gradientAnimation 15s ease infinite alternate; */
+
+}
+
+
+
+@keyframes gradientAnimation {
+
+0% { background-position: 0% 50%; }
+
+100% { background-position: 100% 50%; }
+
+}
+
+
+
+.chart-container {
+
+position: relative;
+
+width: 100%;
+
+max-width: 700px;
+
+margin-left: auto;
+
+margin-right: auto;
+
+height: 350px;
+
+max-height: 45vh;
+
+}
+
+@media (max-width: 768px) {
+
+.chart-container {
+
+height: 250px;
+
+}
+
+}
+
+
+
+/* CSS cho menu active */
+
+.nav-link.active {
+
+color: #1E40AF;
+
+font-weight: 700;
+
+border-bottom: 2px solid #1E40AF;
+
+padding-bottom: 2px;
+
+}
+
+
+
+/* Màu sắc tông lạnh */
+
+.text-primary-accent {
+
+color: #3B82F6;
+
+}
+
+.bg-primary-dark {
+
+background-color: #1D4ED8;
+
+}
+
+.hover\:bg-primary-darker:hover {
+
+background-color: #1E3A8A;
+
+}
+
+
+
+/* CSS cho nút chat nổi */
+
+#chat-button-container {
+
+position: fixed;
+
+bottom: 20px;
+
+right: 20px;
+
+z-index: 1000;
+
+}
+
+
+
+#main-chat-button {
+
+width: 60px;
+
+height: 60px;
+
+border-radius: 50%;
+
+background-color: #3B82F6;
+
+color: white;
+
+font-size: 24px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+cursor: pointer;
+
+transition: all 0.3s ease;
+
+}
+
+#main-chat-button:hover {
+
+background-color: #1D4ED8;
+
+transform: scale(1.05);
+
+}
+
+
+
+#chat-options {
+
+position: absolute;
+
+bottom: 70px;
+
+right: 0;
+
+background-color: white;
+
+border-radius: 10px;
+
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+overflow: hidden;
+
+transform: translateY(10px);
+
+opacity: 0;
+
+visibility: hidden;
+
+transition: all 0.3s ease-out;
+
+min-width: 150px;
+
+display: block;
+
+}
+
+
+
+#chat-options.active {
+
+transform: translateY(0);
+
+opacity: 1;
+
+visibility: visible;
+
+}
+
+
+
+.chat-option-item {
+
+display: flex;
+
+align-items: center;
+
+padding: 12px 15px;
+
+color: #333;
+
+text-decoration: none;
+
+transition: background-color 0.2s ease;
+
+}
+
+.chat-option-item:hover {
+
+background-color: #f0f0f0;
+
+}
+
+.chat-option-item img {
+
+width: 24px;
+
+height: 24px;
+
+margin-right: 10px;
+
+}
+
+
+
+/* Hiệu ứng hover cho FAQ items */
+
+.faq-item:hover {
+
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+background-color: #f8f8f8;
+
+transition: all 0.3s ease;
+
+}
+
+
+
+/* Điều chỉnh typography */
+
+h1, h2, h3 {
+
+font-weight: 700;
+
+color: #1E40AF;
+
+}
+
+
+
+p {
+
+color: #4B5563;
+
+}
+
+
+
+/* Thêm hiệu ứng hover cho các nút */
+
+.button {
+
+transition: all 0.3s ease;
+
+}
+
+.button:hover {
+
+transform: scale(1.05);
+
+}
+
+
+
+/* Cải thiện UI cho contact form */
+
+#contactForm input, #contactForm textarea {
+
+border: 1px solid #D1D5DB;
+
+transition: border-color 0.3s ease;
+
+}
+
+#contactForm input:focus, #contactForm textarea:focus {
+
+border-color: #3B82F6;
+
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+
+}
+
+#hero {
+
+position: relative; /* Cần thiết để định vị lớp giả ::before */
+
+background-image: url('/image/bgnen.jpg');
+
+background-size: cover;
+
+background-position: center;
+
+/* Loại bỏ background gradient nếu bạn muốn chỉ dùng ảnh nền */
+
+/* background-gradient-to-r from-blue-400 to-indigo-300; */
+
+color: white; /* Đảm bảo chữ có màu sáng để dễ nhìn trên nền mờ */
+
+}
+
+
+
+#hero::before {
+
+content: '';
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+background-color:rgb(126, 119, 119); /* Màu đen cho lớp phủ */
+
+opacity: 0.9; /* Điều chỉnh độ mờ của lớp phủ (ví dụ: 80% mờ) */
+
+z-index: -1; /* Đặt lớp phủ ở dưới nội dung của #hero */
+
+}
+
+
+
+/* Đảm bảo nội dung bên trong #hero có z-index cao hơn để hiển thị trên lớp phủ */
+
+#hero > div {
+
+position: relative;
+
+z-index: 0; /* Hoặc có thể là 1 nếu cần thiết */
+
+}
+
+/* CSS cho phần Services với ảnh nền mờ */
+
+#services {
+
+position: relative; /* Cần thiết để định vị lớp giả ::before */
+
+background-image: url('/image/ads.png'); /* Đường dẫn ảnh nền của bạn */
+
+background-size: cover;
+
+background-position: center;
+
+background-repeat: no-repeat;
+
+z-index: 0; /* Đảm bảo nội dung nằm trên lớp phủ */
+
+}
+
+
+
+#services::before {
+
+content: '';
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+
+height: 100%;
+
+background-color: gainsboro;
+
+opacity: 0.8;
+
+z-index: -1; /* Đặt lớp phủ dưới nội dung */
+
+}
+
+
+
+/* Đảm bảo nội dung chính của Services hiển thị rõ ràng trên lớp phủ */
+
+#services .container > div { /* Chọn container con đầu tiên trong services */
+
+position: relative;
+
+z-index: 1;
+
+}
+
+/* Cũng áp dụng cho các khối dịch vụ con */
+
+#services .grid > div { /* Chọn các khối dịch vụ con trong grid */
+
+position: relative;
+
+z-index: 1;
+
+}
+
+</style>
+
 </head>
-<body class="bg-gray-50">
-   
-    <header class="py-6">
-        <nav class="page-container flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold font-['Cormorant_Garamond'] tracking-wide">LÊ TẤT ĐẠT</a>
-            <div class="hidden md:flex space-x-12 items-center text-lg">
-                <a href="#about" class="nav-link text-gray-600">Về Tôi</a>
-                <a href="#services" class="nav-link text-gray-600">Dịch Vụ</a>
-                <a href="#portfolio" class="nav-link text-gray-600">Dự Án</a>
-                <a href="#testimonials" class="nav-link text-gray-600">Khách Hàng</a>
-                <a href="#contact" class="nav-link text-gray-600">Liên Hệ</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-900 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white/95 shadow-lg backdrop-blur-sm">
-            <a href="#about" class="nav-link block py-3 text-gray-700 text-center">Về Tôi</a>
-            <a href="#services" class="nav-link block py-3 text-gray-700 text-center">Dịch Vụ</a>
-            <a href="#portfolio" class="nav-link block py-3 text-gray-700 text-center">Dự Án</a>
-            <a href="#testimonials" class="nav-link block py-3 text-gray-700 text-center">Khách Hàng</a>
-            <a href="#contact" class="nav-link block py-3 text-gray-700 text-center">Liên Hệ</a>
-        </div>
-    </header>
 
-    <main>
-        <section id="hero" class="relative">
-            <div class="page-container">
-                <div class="flex flex-col-reverse md:flex-row items-center md:items-start justify-between">
-                    <div class="mt-8 md:mt-16 md:w-3/5" data-aos="fade-up" data-aos-duration="1200">
-                        <h1 class="font-bold text-center md:text-left">
-                            Lê Tất Đạt
-                        </h1>
-                        <p class="mt-4 md:mt-6 text-xl text-center md:text-left text-gray-600">
-                            Chuyên gia Marketing & Sáng tạo
-                        </p>
-                    </div>
-                    <div class="mt-12 md:mt-0 md:w-2/5 flex justify-end" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200">
-                        <div class="hero-image-wrap w-full max-w-sm md:max-w-md">
-                            <img src="https://source.unsplash.com/600x600/?creative-portrait,minimalist-art" alt="Hình ảnh chân dung Lê Tất Đạt" class="w-full h-auto">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="about" class="py-20 md:py-32">
-            <div class="page-container">
-                <div class="content-section">
-                    <div class="content-block text" data-aos="fade-right" data-aos-duration="1000">
-                        <h2 class="text-4xl">
-                            Câu chuyện của tôi
-                        </h2>
-                        <p class="mt-4 text-gray-600 leading-relaxed text-lg">
-                            Tôi là Lê Tất Đạt, một chuyên gia marketing luôn khao khát tìm ra những câu chuyện độc đáo cho mỗi thương hiệu. Tôi tin rằng marketing không chỉ là quảng cáo, mà là nghệ thuật kể chuyện, xây dựng mối quan hệ và tạo ra trải nghiệm đáng nhớ.
-                        </p>
-                    </div>
-                    <div class="content-block image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                        <img src="https://source.unsplash.com/600x800/?minimalist-office,creative-workspace" alt="Hình ảnh không gian làm việc">
-                    </div>
-                </div>
-            </div>
-        </section>
+<body>
 
-        <section id="services" class="py-20 md:py-32 bg-gray-50">
-            <div class="page-container">
-                <h2 class="section-title" data-aos="fade-up">Dịch vụ</h2>
-                <div class="services-grid" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card">
-                        <h3 class="text-2xl font-bold mb-2">Chiến lược</h3>
-                        <p class="text-gray-600">Xây dựng chiến lược marketing toàn diện từ đầu, bao gồm phân tích thị trường, đối thủ và mục tiêu.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3 class="text-2xl font-bold mb-2">Sáng tạo</h3>
-                        <p class="text-gray-600">Sáng tạo nội dung độc đáo, từ kịch bản video, bài viết blog đến hình ảnh truyền thông.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3 class="text-2xl font-bold mb-2">Quảng cáo</h3>
-                        <p class="text-gray-600">Tối ưu hóa các chiến dịch quảng cáo trên các nền tảng Google, Facebook, TikTok.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="portfolio" class="py-20 md:py-32">
-            <div class="page-container">
-                <div class="content-section">
-                    <div class="content-block image md:order-2" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="https://source.unsplash.com/600x800/?data-analysis,minimalist" alt="Hình ảnh phân tích dữ liệu">
-                    </div>
-                    <div class="content-block text md:order-1" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                        <h2 class="text-4xl">
-                            Những con số biết nói
-                        </h2>
-                        <p class="mt-4 text-gray-600 leading-relaxed text-lg">
-                            Đây là một minh họa về hiệu quả của các chiến dịch marketing mà tôi đã thực hiện cho khách hàng.
-                        </p>
-                        <div class="chart-wrapper mt-8 w-full max-w-md">
-                            <canvas id="portfolioChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="testimonials" class="py-20 md:py-32 bg-gray-50">
-            <div class="page-container">
-                <h2 class="section-title" data-aos="fade-up">Lời chứng thực</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-card">
-                        <p class="text-gray-700 italic mb-4 text-lg">"Lê Tất Đạt đã giúp công ty chúng tôi tăng trưởng doanh số 30% chỉ trong 3 tháng. Anh ấy là một chuyên gia thực thụ!"</p>
-                        <p class="font-semibold text-gray-800">- Nguyễn Thị A, CEO Công ty X</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="text-gray-700 italic mb-4 text-lg">"Chiến lược marketing của Đạt rất sáng tạo và hiệu quả. Chúng tôi rất ấn tượng với kết quả đạt được."</p>
-                        <p class="font-semibold text-gray-800">- Trần Văn B, Giám đốc Marketing Công ty Y</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="text-gray-700 italic mb-4 text-lg">"Nhờ có Lê Tất Đạt, thương hiệu của chúng tôi đã tiếp cận được nhiều khách hàng hơn và xây dựng được hình ảnh chuyên nghiệp."</p>
-                        <p class="font-semibold text-gray-800">- Phạm Thu C, Chủ cửa hàng Z</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="contact" class="py-20 md:py-32">
-            <div class="page-container">
-                <div class="content-section flex-col-reverse md:flex-row">
-                    <div class="content-block text md:order-2" data-aos="fade-left" data-aos-duration="1000">
-                        <h2 class="text-4xl">
-                            Liên hệ
-                        </h2>
-                        <p class="mt-4 text-gray-600 leading-relaxed text-lg">
-                            Bạn muốn thảo luận về dự án của mình? Hãy gửi tin nhắn cho tôi hoặc liên hệ trực tiếp qua thông tin dưới đây.
-                        </p>
-                        <div class="mt-8 space-y-2">
-                            <p class="text-lg"><strong>Email:</strong> datmarketing@example.com</p>
-                            <p class="text-lg"><strong>Điện thoại:</strong> 0987 654 321</p>
-                        </div>
-                    </div>
-                    <div class="content-block md:order-1" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                        <div class="contact-form-wrapper w-full">
-                            <form id="contactForm" class="space-y-6">
-                                <div><input type="text" id="name" name="name" class="w-full focus:outline-none" placeholder="Họ và Tên" required></div>
-                                <div><input type="email" id="email" name="email" class="w-full focus:outline-none" placeholder="Email" required><p id="email-error" class="text-red-500 text-xs italic mt-1 hidden"></p></div>
-                                <div><input type="tel" id="phone" name="phone" class="w-full focus:outline-none" placeholder="Số điện thoại" required><p id="phone-error" class="text-red-500 text-xs italic mt-1 hidden"></p></div>
-                                <div><textarea id="message" name="message" rows="5" class="w-full focus:outline-none" placeholder="Tin nhắn" required></textarea></div>
-                                <div id="form-message" class="text-center text-sm font-medium hidden"></div>
-                                <div class="flex justify-start">
-                                    <button type="submit" class="btn-black text-sm uppercase tracking-wider font-semibold">
-                                        Gửi
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
 
-    </main>
 
-    <footer class="bg-black text-white py-16 mt-16 text-center">
-        <div class="page-container">
-            <p class="text-sm">&copy; 2025 LÊ TẤT ĐẠT. Mọi quyền được bảo lưu.</p>
-        </div>
-    </footer>
 
-    <div id="chat-button-container">
-        <div id="main-chat-button" class="transition-all duration-300">
-            💬
-        </div>
-        <div id="chat-options">
-            <a href="https://m.me/your_messenger_link" target="_blank" class="chat-option-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" alt="Messenger">
-                <span>Chat Messenger</span>
-            </a>
-            <a href="https://zalo.me/your_zalo_link" target="_blank" class="chat-option-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Zalo_logo.svg" alt="Zalo">
-                <span>Chat Zalo</span>
-            </a>
-        </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 1200,
-                once: true,
-                easing: 'ease-out-quad',
-                delay: 100,
-            });
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
 
-            // Header shrink on scroll
-            const header = document.querySelector('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-scrolled');
-                } else {
-                    header.classList.remove('header-scrolled');
-                }
-            });
+<a href="#" class="text-2xl font-bold text-gray-900">LÊ TẤT ĐẠT</a>
 
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+<div class="hidden md:flex space-x-8" >
 
-            // Smooth scroll for nav links and active state
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('main section');
+<a href="#about" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Về Tôi</a>
 
-            navLinks.forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
+<a href="#services" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Dịch Vụ</a>
 
-            // Floating chat button toggle
-            const mainChatButton = document.getElementById('main-chat-button');
-            const chatOptions = document.getElementById('chat-options');
-            mainChatButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                chatOptions.classList.toggle('active');
-            });
+<a href="#achievements" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Thành Tựu</a>
 
-            document.addEventListener('click', (event) => {
-                if (!chatOptions.contains(event.target) && !mainChatButton.contains(event.target)) {
-                    chatOptions.classList.remove('active');
-                }
-            });
+<a href="#workflow" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Quy Trình</a>
 
-            // Chart.js initialization
-            const ctx = document.getElementById('portfolioChart').getContext('2d');
-            const portfolioChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
-                    datasets: [
-                        {
-                            label: 'Tăng trưởng doanh số (%)',
-                            data: [0, 15, 20, 25, 30, 35],
-                            borderColor: '#1a1a1a',
-                            backgroundColor: 'rgba(26, 26, 26, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            pointRadius: 5,
-                            pointHoverRadius: 7,
-                            pointBackgroundColor: '#1a1a1a',
-                            pointBorderColor: '#fff'
-                        },
-                        {
-                            label: 'Tỷ lệ chuyển đổi (%)',
-                            data: [1.5, 2.0, 2.5, 3.0, 3.5, 4.0],
-                            borderColor: '#808080',
-                            backgroundColor: 'rgba(128, 128, 128, 0.1)',
-                            tension: 0.4,
-                            fill: false,
-                            pointRadius: 5,
-                            pointHoverRadius: 7,
-                            pointBackgroundColor: '#808080',
-                            pointBorderColor: '#fff'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                font: { size: 14 }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Tỷ lệ (%)' }
-                        },
-                        x: {
-                            title: { display: true, text: 'Thời gian' }
-                        }
-                    }
-                }
-            });
+<a href="#portfolio" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Dự Án</a>
 
-            // Contact Form Submission
-            const contactForm = document.getElementById('contactForm');
-            const formMessage = document.getElementById('form-message');
-            const emailInput = document.getElementById('email');
-            const phoneInput = document.getElementById('phone');
+<a href="#testimonials" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Lời Chứng Thực</a>
 
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                let isValid = true;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailInput.value)) {
-                    isValid = false;
-                    document.getElementById('email-error').textContent = 'Vui lòng nhập một địa chỉ email hợp lệ.';
-                    document.getElementById('email-error').classList.remove('hidden');
-                } else {
-                    document.getElementById('email-error').classList.add('hidden');
-                }
+<a href="#faq" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">FAQ</a>
 
-                const phoneRegex = /^[0-9\s-()]+$/;
-                if (!phoneRegex.test(phoneInput.value)) {
-                    isValid = false;
-                    document.getElementById('phone-error').textContent = 'Vui lòng nhập một số điện thoại hợp lệ.';
-                    document.getElementById('phone-error').classList.remove('hidden');
-                } else {
-                    document.getElementById('phone-error').classList.add('hidden');
-                }
+<a href="#contact" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Liên Hệ</a>
 
-                if (isValid) {
-                    formMessage.textContent = 'Đang gửi...';
-                    formMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
-                    
-                    setTimeout(() => {
-                        formMessage.textContent = 'Tin nhắn của bạn đã được gửi thành công!';
-                        formMessage.classList.add('text-green-500');
-                        contactForm.reset();
-                    }, 2000);
-                } else {
-                     formMessage.textContent = 'Vui lòng kiểm tra lại thông tin đã nhập.';
-                     formMessage.classList.remove('hidden', 'text-green-500');
-                     formMessage.classList.add('text-red-500');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+</div>
+
+<button id="mobile-menu-button" class="md:hidden text-gray-900">
+
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+
+</button>
+
+</nav>
+
+
+<div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+
+<a href="#about" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Về Tôi</a>
+
+<a href="#services" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Dịch Vụ</a>
+
+<a href="#achievements" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Thành Tựu</a>
+
+<a href="#workflow" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Quy Trình</a>
+
+<a href="#portfolio" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Dự Án</a>
+
+<a href="#testimonials" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Lời Chứng Thực</a>
+
+<a href="#faq" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">FAQ</a>
+
+<a href="#contact" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Liên Hệ</a>
+
+</div>
+
+
+</header>
+
+
+
+
+
+<main>
+
+
+
+
+<section id="hero" class="py-20 md:py-32 bg-gradient-to-r from-blue-400 to-indigo-300"
+
+data-aos="fade-up" data-aos-duration="1000">
+
+<div class="container mx-auto px-6 text-center">
+
+<h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider text-white leading-tight drop-shadow-lg" data-aos="fade-up" data-aos-delay="200">Lê Tất Đạt</h1>
+
+<p class="mt-4 text-lg md:text-3xl text-blue-100 font-semibold drop-shadow" data-aos="fade-up" data-aos-delay="300">Chuyên Gia Chạy Marketing Hiệu Quả</p>
+
+<p class="mt-6 max-w-3xl mx-auto text-base md:text-lg text-white drop-shadow-sm">
+
+Với nhiều năm kinh nghiệm trong lĩnh vực marketing số, tôi giúp doanh nghiệp tối ưu hóa chiến lược quảng cáo, tăng trưởng doanh số và xây dựng thương hiệu vững mạnh trên thị trường.
+
+</p>
+
+<div class="mt-8" data-aos="fade-up" data-aos-delay="500">
+
+<a href="#contact" class="inline-block bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-primary-darker transition-colors transform hover:scale-105 button">
+
+Liên Hệ Ngay
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section id="about" class="py-16 bg-white">
+
+<div class="container mx-auto px-6 md:flex md:items-center md:space-x-12">
+
+<div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right" data-aos-delay="200">
+
+<img src="https://placehold.co/600x400/B3E0EE/1D4ED8?text=L%C3%AA+T%E1%BA%A5t+%C4%90%E1%BA%A1t" alt="Hình ảnh Lê Tất Đạt" class="rounded-lg shadow-xl w-full h-auto">
+
+</div>
+
+<div class="md:w-1/2" data-aos="fade-left" data-aos-delay="300">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Về Tôi</h2>
+
+<p class="text-gray-700 leading-relaxed mb-4">
+
+Tôi là Lê Tất Đạt, một chuyên gia marketing với niềm đam mê kiến tạo giá trị cho doanh nghiệp thông qua các chiến lược truyền thông hiệu quả. Với tư duy phân tích sắc bén và khả năng nắm bắt xu hướng thị trường, tôi đã đồng hành cùng nhiều đối tác đạt được những mục tiêu kinh doanh ấn tượng.
+
+</p>
+
+<p class="text-gray-700 leading-relaxed">
+
+Tôi tin rằng mỗi chiến dịch marketing không chỉ là quảng bá sản phẩm, mà còn là kể một câu chuyện, xây dựng kết nối và tạo ra trải nghiệm đáng nhớ cho khách hàng. Mục tiêu của tôi là biến ý tưởng thành hành động, và hành động thành kết quả.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="services" class="py-16 ">
+
+
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Dịch Vụ Của Tôi</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Tôi cung cấp các giải pháp marketing toàn diện, được tùy chỉnh để phù hợp với nhu cầu và mục tiêu cụ thể của từng doanh nghiệp.
+
+</p>
+
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+<div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+
+<div class="text-5xl text-primary-accent mb-4">📈</div>
+
+<h3 class="font-bold text-xl mb-3 text-gray-900">Chiến Lược Marketing Số</h3>
+
+<p class="text-gray-600">Xây dựng kế hoạch marketing tổng thể, từ SEO, SEM đến Social Media và Content Marketing.</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+
+<div class="text-5xl text-primary-accent mb-4">📊</div>
+
+<h3 class="font-bold text-xl mb-3 text-gray-900">Tối Ưu Hóa Quảng Cáo</h3>
+
+<p class="text-gray-600">Tối ưu hóa hiệu suất các chiến dịch quảng cáo trên Google, Facebook, TikTok.</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+
+<div class="text-5xl text-primary-accent mb-4">✍️</div>
+
+<h3 class="font-bold text-xl mb-3 text-gray-900">Phát Triển Nội Dung</h3>
+
+<p class="text-gray-600">Sáng tạo nội dung hấp dẫn, thu hút và chuyển đổi khách hàng tiềm năng.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="achievements" class="py-16 bg-white">
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Thành Tựu & Số Liệu Nổi Bật</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Những con số không biết nói dối - minh chứng cho hiệu quả công việc và cam kết của tôi.
+
+</p>
+
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+
+<div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+
+<div class="text-5xl font-bold text-blue-600 mb-2">300+</div>
+
+<p class="text-xl font-semibold text-gray-800">Dự Án Thành Công</p>
+
+</div>
+
+<div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
+
+<div class="text-5xl font-bold text-blue-600 mb-2">95%</div>
+
+<p class="text-xl font-semibold text-gray-800">Hài Lòng Khách Hàng</p>
+
+</div>
+
+<div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="300">
+
+<div class="text-5xl font-bold text-blue-600 mb-2">20M+</div>
+
+<p class="text-xl font-semibold text-gray-800">Lượt Tiếp Cận</p>
+
+</div>
+
+<div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="400">
+
+<div class="text-5xl font-bold text-blue-600 mb-2">10+</div>
+
+<p class="text-xl font-semibold text-gray-800">Năm Kinh Nghiệm</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="workflow" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Quy Trình Làm Việc Chuyên Nghiệp</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Tôi tuân thủ một quy trình rõ ràng để đảm bảo mọi dự án đều đạt được kết quả tối ưu.
+
+</p>
+
+</div>
+
+<div class="relative max-w-5xl mx-auto">
+
+<div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-300 rounded-full z-0"></div>
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+<div class="flex flex-col md:flex-row md:items-start gap-4" data-aos="fade-right" data-aos-delay="100">
+
+<div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">1</div>
+
+<div class="md:text-right md:flex-grow">
+
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Phân Tích & Tư Vấn</h3>
+
+<p class="text-gray-700">Tìm hiểu sâu về mục tiêu, đối tượng và thị trường của bạn để đưa ra chiến lược phù hợp.</p>
+
+</div>
+
+</div>
+
+<div class="flex flex-col md:flex-row-reverse md:items-start md:text-left gap-4" data-aos="fade-left" data-aos-delay="200">
+
+<div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">2</div>
+
+<div class="md:flex-grow">
+
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Lập Kế Hoạch Chi Tiết</h3>
+
+<p class="text-gray-700">Xây dựng kế hoạch hành động cụ thể cho từng giai đoạn, bao gồm ngân sách và KPI.</p>
+
+</div>
+
+</div>
+
+<div class="flex flex-col md:flex-row md:items-start gap-4" data-aos="fade-right" data-aos-delay="300">
+
+<div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">3</div>
+
+<div class="md:text-right md:flex-grow">
+
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Triển Khai & Thực Thi</h3>
+
+<p class="text-gray-700">Triển khai các chiến dịch quảng cáo, sáng tạo nội dung và tối ưu hóa liên tục.</p>
+
+</div>
+
+</div>
+
+<div class="flex flex-col md:flex-row-reverse md:items-start md:text-left gap-4" data-aos="fade-left" data-aos-delay="400">
+
+<div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">4</div>
+
+<div class="md:flex-grow">
+
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Đo Lường & Báo Cáo</h3>
+
+<p class="text-gray-700">Theo dõi hiệu suất, phân tích dữ liệu và cung cấp báo cáo minh bạch, định kỳ.</p>
+
+</div>
+
+</div>
+
+<div class="flex flex-col md:flex-row md:items-start gap-4" data-aos="fade-right" data-aos-delay="500">
+
+<div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">5</div>
+
+<div class="md:text-right md:flex-grow">
+
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Tối Ưu & Phát Triển</h3>
+
+<p class="text-gray-700">Dựa trên kết quả, tiếp tục tối ưu hóa và đề xuất các giải pháp phát triển bền vững.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="portfolio" class="py-16 bg-white">
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Các Dự Án Tiêu Biểu</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Dưới đây là một số kết quả nổi bật từ các dự án marketing mà tôi đã thực hiện. Mỗi biểu đồ đại diện cho hiệu quả của một chiến dịch cụ thể, thể hiện sự tăng trưởng và tối ưu hóa mà tôi đã mang lại cho khách hàng.
+
+</p>
+
+</div>
+
+<div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-lg p-8 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
+
+<h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Hiệu Quả Chiến Dịch Marketing</h3>
+
+<div class="chart-container">
+
+<canvas id="portfolioChart"></canvas>
+
+</div>
+
+<div class="mt-8 text-center text-gray-600">
+
+<p>Biểu đồ này minh họa các chỉ số quan trọng như tăng trưởng doanh số và tỷ lệ chuyển đổi sau khi triển khai chiến dịch marketing.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="testimonials" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Lời Chứng Thực</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Sự hài lòng của khách hàng là minh chứng rõ nhất cho chất lượng dịch vụ của tôi.
+
+</p>
+
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+<div class="bg-white p-6 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+
+<p class="text-gray-700 italic mb-4">"Lê Tất Đạt đã giúp công ty chúng tôi tăng trưởng doanh số 30% chỉ trong 3 tháng. Anh ấy là một chuyên gia thực thụ!"</p>
+
+<p class="font-semibold text-gray-900">- Nguyễn Thị A, CEO Công ty X</p>
+
+</div>
+
+<div class="bg-white p-6 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+
+<p class="text-gray-700 italic mb-4">"Chiến lược marketing của Đạt rất sáng tạo và hiệu quả. Chúng tôi rất ấn tượng với kết quả đạt được."</p>
+
+<p class="font-semibold text-gray-900">- Trần Văn B, Giám đốc Marketing Công ty Y</p>
+
+</div>
+
+<div class="bg-white p-6 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+
+<p class="text-gray-700 italic mb-4">"Nhờ có Lê Tất Đạt, thương hiệu của chúng tôi đã tiếp cận được nhiều khách hàng hơn và xây dựng được hình ảnh chuyên nghiệp."</p>
+
+<p class="font-semibold text-gray-900">- Phạm Thu C, Chủ cửa hàng Z</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="faq" class="py-16 bg-white">
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Câu Hỏi Thường Gặp</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Đây là những câu hỏi mà khách hàng thường quan tâm.
+
+</p>
+
+</div>
+
+<div class="max-w-3xl mx-auto">
+
+<div class="mb-4 bg-gray-50 p-6 rounded-lg shadow-md faq-item" data-aos="fade-up" data-aos-delay="100">
+
+<h3 class="text-xl font-bold text-gray-900 mb-2 cursor-pointer faq-question">1. Chi phí dịch vụ marketing của bạn là bao nhiêu? <span class="float-right text-primary-accent">+</span></h3>
+
+<div class="faq-answer hidden text-gray-700 mt-2">
+
+Chi phí dịch vụ phụ thuộc vào quy mô dự án, mục tiêu cụ thể và các kênh marketing bạn muốn triển khai. Tôi sẽ cung cấp báo giá chi tiết sau khi phân tích nhu cầu của bạn.
+
+</div>
+
+</div>
+
+<div class="mb-4 bg-gray-50 p-6 rounded-lg shadow-md faq-item" data-aos="fade-up" data-aos-delay="200">
+
+<h3 class="text-xl font-bold text-gray-900 mb-2 cursor-pointer faq-question">2. Mất bao lâu để thấy được kết quả? <span class="float-right text-primary-accent">+</span></h3>
+
+<div class="faq-answer hidden text-gray-700 mt-2">
+
+Thời gian thấy kết quả có thể khác nhau tùy thuộc vào ngành nghề, mức độ cạnh tranh và ngân sách. Thông thường, bạn sẽ thấy những thay đổi đáng kể trong vòng 3-6 tháng đầu tiên.
+
+</div>
+
+</div>
+
+<div class="mb-4 bg-gray-50 p-6 rounded-lg shadow-md faq-item" data-aos="fade-up" data-aos-delay="300">
+
+<h3 class="text-xl font-bold text-gray-900 mb-2 cursor-pointer faq-question">3. Bạn có kinh nghiệm làm việc với ngành nghề nào? <span class="float-right text-primary-accent">+</span></h3>
+
+<div class="faq-answer hidden text-gray-700 mt-2">
+
+Tôi có kinh nghiệm đa dạng với nhiều ngành nghề như thương mại điện tử, dịch vụ làm đẹp, giáo dục, bất động sản và công nghệ. Tôi luôn sẵn sàng tìm hiểu sâu về lĩnh vực của bạn.
+
+</div>
+
+</div>
+
+<div class="mb-4 bg-gray-50 p-6 rounded-lg shadow-md faq-item" data-aos="fade-up" data-aos-delay="400">
+
+<h3 class="text-xl font-bold text-gray-900 mb-2 cursor-pointer faq-question">4. Làm thế nào để bắt đầu hợp tác với bạn? <span class="float-right text-primary-accent">+</span></h3>
+
+<div class="faq-answer hidden text-gray-700 mt-2">
+
+Bạn có thể điền vào biểu mẫu liên hệ hoặc gửi email trực tiếp cho tôi. Chúng ta sẽ sắp xếp một cuộc họp để thảo luận chi tiết về nhu cầu và mục tiêu của bạn.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="contact" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+
+<div class="container mx-auto px-6">
+
+<div class="text-center mb-12" data-aos="fade-up">
+
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">Liên Hệ</h2>
+
+<p class="mt-4 max-w-3xl mx-auto text-gray-700">
+
+Bạn muốn thảo luận về dự án của mình? Hãy điền vào biểu mẫu dưới đây hoặc liên hệ trực tiếp với tôi.
+
+</p>
+
+</div>
+
+<div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+
+<form id="contactForm">
+
+<div class="mb-4">
+
+<label for="name" class="block text-gray-700 text-sm font-bold mb-2">Họ và Tên:</label>
+
+<input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Tên của bạn" required>
+
+</div>
+
+<div class="mb-4">
+
+<label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+
+<input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="email@example.com" required>
+
+<p id="email-error" class="text-red-500 text-xs italic hidden mt-1"></p>
+
+</div>
+
+<div class="mb-4">
+
+<label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Số Điện Thoại:</label>
+
+<input type="tel" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Số điện thoại của bạn" required>
+
+<p id="phone-error" class="text-red-500 text-xs italic hidden mt-1"></p>
+
+</div>
+
+<div class="mb-6">
+
+<label for="message" class="block text-gray-700 text-sm font-bold mb-2">Tin Nhắn:</label>
+
+<textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nội dung tin nhắn của bạn" required></textarea>
+
+</div>
+
+<div id="form-message" class="text-center mt-4 text-sm font-medium hidden"></div>
+
+<div class="flex items-center justify-center">
+
+<button type="submit" class="bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-primary-darker transition-colors transform hover:scale-105 button">
+
+Gửi Tin Nhắn
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<footer class="bg-gray-800 text-white py-8 mt-16">
+
+<div class="container mx-auto px-6 text-center">
+
+<p>© 2025 Lê Tất Đạt. Mọi quyền được bảo lưu.</p>
+
+<p class="text-sm text-gray-400 mt-2">Được thiết kế để tối ưu hóa trải nghiệm người dùng và hiệu quả marketing.</p>
+
+</div>
+
+</footer>
+
+
+
+<div id="chat-button-container">
+
+<div id="main-chat-button">
+
+💬
+
+</div>
+
+<div id="chat-options"> <a href="https://m.me/your_messenger_link" target="_blank" class="chat-option-item">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" alt="Messenger">
+
+<span>Chat Messenger</span>
+
+</a>
+
+<a href="https://zalo.me/your_zalo_link" target="_blank" class="chat-option-item">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Zalo_logo.svg" alt="Zalo">
+
+<span>Chat Zalo</span>
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', funct
