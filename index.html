@@ -11,18 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-       body {
-    font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
-    /* Xóa hoặc chú thích dòng gradient này */
-    background: linear-gradient(135deg, #E0F2F7 0%, #B3E0EE 50%, #E0F2F7 100%); 
-    background-size: 200% 200%;
-    /* animation: gradientAnimation 15s ease infinite alternate; */
-}
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8fafc;
         }
 
         .chart-container {
@@ -40,7 +32,6 @@
             }
         }
 
-        /* CSS cho menu active */
         .nav-link.active {
             color: #1E40AF;
             font-weight: 700;
@@ -48,7 +39,6 @@
             padding-bottom: 2px;
         }
 
-        /* Màu sắc tông lạnh */
         .text-primary-accent {
             color: #3B82F6;
         }
@@ -59,7 +49,6 @@
             background-color: #1E3A8A;
         }
 
-        /* CSS cho nút chat nổi */
         #chat-button-container {
             position: fixed;
             bottom: 20px;
@@ -124,15 +113,13 @@
             height: 24px;
             margin-right: 10px;
         }
-
-        /* Hiệu ứng hover cho FAQ items */
+        
         .faq-item:hover {
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
             background-color: #f8f8f8;
             transition: all 0.3s ease;
         }
 
-        /* Điều chỉnh typography */
         h1, h2, h3 {
             font-weight: 700;
             color: #1E40AF;
@@ -142,7 +129,6 @@
             color: #4B5563;
         }
 
-        /* Thêm hiệu ứng hover cho các nút */
         .button {
             transition: all 0.3s ease;
         }
@@ -150,7 +136,6 @@
             transform: scale(1.05);
         }
 
-        /* Cải thiện UI cho contact form */
         #contactForm input, #contactForm textarea {
             border: 1px solid #D1D5DB;
             transition: border-color 0.3s ease;
@@ -159,76 +144,114 @@
             border-color: #3B82F6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
         }
+        
         #hero {
-    position: relative; /* Cần thiết để định vị lớp giả ::before */
-    background-image: url('/image/bgnen.jpg');
-    background-size: cover;
-    background-position: center;
-    /* Loại bỏ background gradient nếu bạn muốn chỉ dùng ảnh nền */
-    /* background-gradient-to-r from-blue-400 to-indigo-300; */
-    color: white; /* Đảm bảo chữ có màu sáng để dễ nhìn trên nền mờ */
-}
+            position: relative;
+            background-image: url('https://placehold.co/1920x1080/436c8d/FFFFFF/png?text=L%C3%AA+T%E1%BA%A5t+%C4%90%E1%BA%A1t+Marketing');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            overflow: hidden; /* Ngăn chặn nội dung tràn ra khỏi div */
+        }
+        
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.8), rgba(59, 130, 246, 0.8));
+            opacity: 0.9;
+            z-index: 1;
+        }
+        
+        #hero > div {
+            position: relative;
+            z-index: 2;
+        }
 
-#hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color:rgb(126, 119, 119); /* Màu đen cho lớp phủ */
-    opacity: 0.9; /* Điều chỉnh độ mờ của lớp phủ (ví dụ: 80% mờ) */
-    z-index: -1; /* Đặt lớp phủ ở dưới nội dung của #hero */
-}
+        #services {
+            position: relative;
+            background-color: #f0f4f8;
+            overflow: hidden;
+        }
 
-/* Đảm bảo nội dung bên trong #hero có z-index cao hơn để hiển thị trên lớp phủ */
-#hero > div {
-    position: relative;
-    z-index: 0; /* Hoặc có thể là 1 nếu cần thiết */
-}
-/* CSS cho phần Services với ảnh nền mờ */
-#services {
-    position: relative; /* Cần thiết để định vị lớp giả ::before */
-    background-image: url('/image/ads.png'); /* Đường dẫn ảnh nền của bạn */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0; /* Đảm bảo nội dung nằm trên lớp phủ */
-}
+        #services::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            animation: moveGradient 15s ease infinite alternate;
+            z-index: 0;
+        }
 
-#services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    
-    height: 100%;
-    background-color: gainsboro;
-    opacity: 0.8;
-    z-index: -1; /* Đặt lớp phủ dưới nội dung */
-}
+        @keyframes moveGradient {
+            0% { transform: scale(1.0) translate(0, 0); }
+            100% { transform: scale(1.2) translate(50px, 50px); }
+        }
 
-/* Đảm bảo nội dung chính của Services hiển thị rõ ràng trên lớp phủ */
-#services .container > div { /* Chọn container con đầu tiên trong services */
-    position: relative;
-    z-index: 1; 
-}
-/* Cũng áp dụng cho các khối dịch vụ con */
-#services .grid > div { /* Chọn các khối dịch vụ con trong grid */
-    position: relative;
-    z-index: 1;
-}
+        .service-card {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .workflow-step {
+            position: relative;
+        }
+        
+        .workflow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -24px;
+            width: 2px;
+            height: 20px;
+            background-color: #d1d5db;
+            transform: translateX(-50%);
+        }
+
+        @media (min-width: 768px) {
+             .workflow-step:not(:last-child)::after {
+                content: none;
+            }
+             .workflow-step::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: -24px;
+                width: 20px;
+                height: 2px;
+                background-color: #d1d5db;
+                transform: translateY(-50%);
+            }
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-50">
    
     <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
-       
-
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-gray-900">LÊ TẤT ĐẠT</a>
-            <div class="hidden md:flex space-x-8" >
+            <div class="hidden md:flex space-x-8">
                 <a href="#about" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Về Tôi</a>
                 <a href="#services" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Dịch Vụ</a>
                 <a href="#achievements" class="nav-link text-gray-600 hover:text-primary-accent transition-colors">Thành Tựu</a>
@@ -242,7 +265,6 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-    
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#about" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Về Tôi</a>
             <a href="#services" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Dịch Vụ</a>
@@ -253,34 +275,28 @@
             <a href="#faq" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">FAQ</a>
             <a href="#contact" class="nav-link block py-2 text-gray-600 hover:text-primary-accent">Liên Hệ</a>
         </div>
-   
     </header>
 
-
     <main>
-        
-
-        <section id="hero" class="py-20 md:py-32 bg-gradient-to-r from-blue-400 to-indigo-300"
-        data-aos="fade-up" data-aos-duration="1000">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider text-white leading-tight drop-shadow-lg" data-aos="fade-up" data-aos-delay="200">Lê Tất Đạt</h1>
-            <p class="mt-4 text-lg md:text-3xl text-blue-100 font-semibold drop-shadow" data-aos="fade-up" data-aos-delay="300">Chuyên Gia Chạy Marketing Hiệu Quả</p>
-            <p class="mt-6 max-w-3xl mx-auto text-base md:text-lg text-white drop-shadow-sm">
-                Với nhiều năm kinh nghiệm trong lĩnh vực marketing số, tôi giúp doanh nghiệp tối ưu hóa chiến lược quảng cáo, tăng trưởng doanh số và xây dựng thương hiệu vững mạnh trên thị trường.
-            </p>
-            <div class="mt-8" data-aos="fade-up" data-aos-delay="500">
-                <a href="#contact" class="inline-block bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-primary-darker transition-colors transform hover:scale-105 button">
-                    Liên Hệ Ngay
-                </a>
+        <section id="hero" class="py-20 md:py-32" data-aos="fade-up" data-aos-duration="1000">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider text-white leading-tight drop-shadow-lg" data-aos="fade-up" data-aos-delay="200">Lê Tất Đạt</h1>
+                <p class="mt-4 text-lg md:text-3xl text-blue-100 font-semibold drop-shadow" data-aos="fade-up" data-aos-delay="300">Chuyên Gia Chạy Marketing Hiệu Quả</p>
+                <p class="mt-6 max-w-3xl mx-auto text-base md:text-lg text-white drop-shadow-sm">
+                    Với nhiều năm kinh nghiệm trong lĩnh vực marketing số, tôi giúp doanh nghiệp tối ưu hóa chiến lược quảng cáo, tăng trưởng doanh số và xây dựng thương hiệu vững mạnh trên thị trường.
+                </p>
+                <div class="mt-8" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#contact" class="inline-block bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-primary-darker transition-colors transform hover:scale-105 button">
+                        Liên Hệ Ngay
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
-      
+        </section>
 
         <section id="about" class="py-16 bg-white">
             <div class="container mx-auto px-6 md:flex md:items-center md:space-x-12">
                 <div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right" data-aos-delay="200">
-                    <img src="https://placehold.co/600x400/B3E0EE/1D4ED8?text=L%C3%AA+T%E1%BA%A5t+%C4%90%E1%BA%A1t" alt="Hình ảnh Lê Tất Đạt" class="rounded-lg shadow-xl w-full h-auto">
+                    <img src="https://placehold.co/600x400/3B82F6/1D4ED8/png?text=L%C3%AA+T%E1%BA%A5t+%C4%90%E1%BA%A1t" alt="Hình ảnh Lê Tất Đạt" class="rounded-lg shadow-xl w-full h-auto">
                 </div>
                 <div class="md:w-1/2" data-aos="fade-left" data-aos-delay="300">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Về Tôi</h2>
@@ -295,7 +311,6 @@
         </section>
 
         <section id="services" class="py-16 ">
-
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Dịch Vụ Của Tôi</h2>
@@ -304,17 +319,17 @@
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-5xl text-primary-accent mb-4">📈</div>
                         <h3 class="font-bold text-xl mb-3 text-gray-900">Chiến Lược Marketing Số</h3>
                         <p class="text-gray-600">Xây dựng kế hoạch marketing tổng thể, từ SEO, SEM đến Social Media và Content Marketing.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-5xl text-primary-accent mb-4">📊</div>
                         <h3 class="font-bold text-xl mb-3 text-gray-900">Tối Ưu Hóa Quảng Cáo</h3>
                         <p class="text-gray-600">Tối ưu hóa hiệu suất các chiến dịch quảng cáo trên Google, Facebook, TikTok.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="text-5xl text-primary-accent mb-4">✍️</div>
                         <h3 class="font-bold text-xl mb-3 text-gray-900">Phát Triển Nội Dung</h3>
                         <p class="text-gray-600">Sáng tạo nội dung hấp dẫn, thu hút và chuyển đổi khách hàng tiềm năng.</p>
@@ -323,7 +338,7 @@
             </div>
         </section>
 
-        <section id="achievements" class="py-16 bg-white">
+        <section id="achievements" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Thành Tựu & Số Liệu Nổi Bật</h2>
@@ -331,28 +346,28 @@
                         Những con số không biết nói dối - minh chứng cho hiệu quả công việc và cam kết của tôi.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                    <div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">300+</div>
-                        <p class="text-xl font-semibold text-gray-800">Dự Án Thành Công</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center achievement-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">300+</div>
+                        <p class="text-sm md:text-xl font-semibold text-gray-800">Dự Án Thành Công</p>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">95%</div>
-                        <p class="text-xl font-semibold text-gray-800">Hài Lòng Khách Hàng</p>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center achievement-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">95%</div>
+                        <p class="text-sm md:text-xl font-semibold text-gray-800">Hài Lòng Khách Hàng</p>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="300">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">20M+</div>
-                        <p class="text-xl font-semibold text-gray-800">Lượt Tiếp Cận</p>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center achievement-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">20M+</div>
+                        <p class="text-sm md:text-xl font-semibold text-gray-800">Lượt Tiếp Cận</p>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="400">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">10+</div>
-                        <p class="text-xl font-semibold text-gray-800">Năm Kinh Nghiệm</p>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center achievement-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">10+</div>
+                        <p class="text-sm md:text-xl font-semibold text-gray-800">Năm Kinh Nghiệm</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="workflow" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <section id="workflow" class="py-16 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Quy Trình Làm Việc Chuyên Nghiệp</h2>
@@ -360,65 +375,48 @@
                         Tôi tuân thủ một quy trình rõ ràng để đảm bảo mọi dự án đều đạt được kết quả tối ưu.
                     </p>
                 </div>
-                <div class="relative max-w-5xl mx-auto">
-                    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-300 rounded-full z-0"></div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="flex flex-col md:flex-row md:items-start gap-4" data-aos="fade-right" data-aos-delay="100">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">1</div>
-                            <div class="md:text-right md:flex-grow">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Phân Tích & Tư Vấn</h3>
-                                <p class="text-gray-700">Tìm hiểu sâu về mục tiêu, đối tượng và thị trường của bạn để đưa ra chiến lược phù hợp.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col md:flex-row-reverse md:items-start md:text-left gap-4" data-aos="fade-left" data-aos-delay="200">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">2</div>
-                            <div class="md:flex-grow">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Lập Kế Hoạch Chi Tiết</h3>
-                                <p class="text-gray-700">Xây dựng kế hoạch hành động cụ thể cho từng giai đoạn, bao gồm ngân sách và KPI.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col md:flex-row md:items-start gap-4" data-aos="fade-right" data-aos-delay="300">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">3</div>
-                            <div class="md:text-right md:flex-grow">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Triển Khai & Thực Thi</h3>
-                                <p class="text-gray-700">Triển khai các chiến dịch quảng cáo, sáng tạo nội dung và tối ưu hóa liên tục.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col md:flex-row-reverse md:items-start md:text-left gap-4" data-aos="fade-left" data-aos-delay="400">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">4</div>
-                            <div class="md:flex-grow">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Đo Lường & Báo Cáo</h3>
-                                <p class="text-gray-700">Theo dõi hiệu suất, phân tích dữ liệu và cung cấp báo cáo minh bạch, định kỳ.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col md:flex-row md:items-start gap-4" data-aos="fade-right" data-aos-delay="500">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">5</div>
-                            <div class="md:text-right md:flex-grow">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Tối Ưu & Phát Triển</h3>
-                                <p class="text-gray-700">Dựa trên kết quả, tiếp tục tối ưu hóa và đề xuất các giải pháp phát triển bền vững.</p>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-12 max-w-6xl mx-auto text-center">
+                    <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 mx-auto bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-2xl mb-4 shadow-md">1</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Phân Tích & Tư Vấn</h3>
+                        <p class="text-sm text-gray-700">Tìm hiểu sâu về mục tiêu và thị trường.</p>
+                    </div>
+                    <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 mx-auto bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-2xl mb-4 shadow-md">2</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Lập Kế Hoạch Chi Tiết</h3>
+                        <p class="text-sm text-gray-700">Xây dựng kế hoạch hành động cụ thể.</p>
+                    </div>
+                    <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 mx-auto bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-2xl mb-4 shadow-md">3</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Triển Khai & Thực Thi</h3>
+                        <p class="text-sm text-gray-700">Triển khai chiến dịch và tối ưu liên tục.</p>
+                    </div>
+                    <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-16 h-16 mx-auto bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-2xl mb-4 shadow-md">4</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Đo Lường & Báo Cáo</h3>
+                        <p class="text-sm text-gray-700">Theo dõi hiệu suất và báo cáo minh bạch.</p>
+                    </div>
+                    <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                        <div class="w-16 h-16 mx-auto bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-2xl mb-4 shadow-md">5</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Tối Ưu & Phát Triển</h3>
+                        <p class="text-sm text-gray-700">Đề xuất giải pháp phát triển bền vững.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="py-16 bg-white">
+        <section id="portfolio" class="py-16 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Các Dự Án Tiêu Biểu</h2>
                     <p class="mt-4 max-w-3xl mx-auto text-gray-700">
-                        Dưới đây là một số kết quả nổi bật từ các dự án marketing mà tôi đã thực hiện. Mỗi biểu đồ đại diện cho hiệu quả của một chiến dịch cụ thể, thể hiện sự tăng trưởng và tối ưu hóa mà tôi đã mang lại cho khách hàng.
+                        Dưới đây là một số kết quả nổi bật từ các dự án marketing mà tôi đã thực hiện.
                     </p>
                 </div>
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-lg p-8 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
+                <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Hiệu Quả Chiến Dịch Marketing</h3>
                     <div class="chart-container">
                         <canvas id="portfolioChart"></canvas>
-                    </div>
-                    <div class="mt-8 text-center text-gray-600">
-                        <p>Biểu đồ này minh họa các chỉ số quan trọng như tăng trưởng doanh số và tỷ lệ chuyển đổi sau khi triển khai chiến dịch marketing.</p>
                     </div>
                 </div>
             </div>
@@ -433,15 +431,15 @@
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="100">
                         <p class="text-gray-700 italic mb-4">"Lê Tất Đạt đã giúp công ty chúng tôi tăng trưởng doanh số 30% chỉ trong 3 tháng. Anh ấy là một chuyên gia thực thụ!"</p>
                         <p class="font-semibold text-gray-900">- Nguyễn Thị A, CEO Công ty X</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="200">
                         <p class="text-gray-700 italic mb-4">"Chiến lược marketing của Đạt rất sáng tạo và hiệu quả. Chúng tôi rất ấn tượng với kết quả đạt được."</p>
                         <p class="font-semibold text-gray-900">- Trần Văn B, Giám đốc Marketing Công ty Y</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transition-transform hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="300">
                         <p class="text-gray-700 italic mb-4">"Nhờ có Lê Tất Đạt, thương hiệu của chúng tôi đã tiếp cận được nhiều khách hàng hơn và xây dựng được hình ảnh chuyên nghiệp."</p>
                         <p class="font-semibold text-gray-900">- Phạm Thu C, Chủ cửa hàng Z</p>
                     </div>
@@ -537,7 +535,8 @@
         <div id="main-chat-button">
             💬
         </div>
-        <div id="chat-options"> <a href="https://m.me/your_messenger_link" target="_blank" class="chat-option-item">
+        <div id="chat-options">
+            <a href="https://m.me/your_messenger_link" target="_blank" class="chat-option-item">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" alt="Messenger">
                 <span>Chat Messenger</span>
             </a>
@@ -550,251 +549,108 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Khởi tạo AOS
+        document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
-                duration: 1000,
-                once: true
+                duration: 800,
+                once: true,
+                easing: 'ease-in-out',
+                delay: 200,
             });
 
-            // --- Chart.js ---
-            const portfolioData = {
-                labels: ['Tăng trưởng doanh số', 'Tỷ lệ chuyển đổi', 'Lượt truy cập', 'Tương tác MXH'],
-                values: [45, 12, 15000, 8000]
-            };
-
-            const ctx = document.getElementById('portfolioChart').getContext('2d');
-            const portfolioChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: portfolioData.labels,
-                    datasets: [{
-                        label: 'Chỉ số hiệu suất',
-                        data: portfolioData.values,
-                        backgroundColor: [
-                            '#60A5FA',
-                            '#3B82F6',
-                            '#2563EB',
-                            '#1D4ED8'
-                        ],
-                        borderColor: [
-                            '#1E40AF',
-                            '#1E40AF',
-                            '#1E40AF',
-                            '#1E40AF'
-                        ],
-                        borderWidth: 1,
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        if (context.label === 'Tăng trưởng doanh số' || context.label === 'Tỷ lệ chuyển đổi') {
-                                            label += context.parsed.y + '%';
-                                        } else {
-                                            label += context.parsed.y;
-                                        }
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Chỉ số',
-                                font: {
-                                    weight: 'bold'
-                                }
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Giá trị',
-                                font: {
-                                    weight: 'bold'
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            mobileMenu.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-
-            // --- Contact Form ---
-            const contactForm = document.getElementById('contactForm');
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const phoneInput = document.getElementById('phone');
-            const messageInput = document.getElementById('message');
-            const formMessageDiv = document.getElementById('form-message');
-            const emailError = document.getElementById('email-error');
-            const phoneError = document.getElementById('phone-error');
-
-            const googleSheetUrl = 'https://script.google.com/macros/s/AKfycbxiaQFNSS3TlWBbqroQlXFuKb_kG-VDSilYZeHAyp5XmpqZ7u3cv_kQh16DTij6Rgw5/exec';
-
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                let isValid = true;
-
-                formMessageDiv.classList.add('hidden');
-                formMessageDiv.textContent = '';
-                emailError.classList.add('hidden');
-                phoneError.classList.add('hidden');
-
-                if (!nameInput.value || !emailInput.value || !phoneInput.value || !messageInput.value) {
-                    formMessageDiv.classList.remove('hidden');
-                    formMessageDiv.classList.remove('text-green-500');
-                    formMessageDiv.classList.add('text-red-500');
-                    formMessageDiv.textContent = 'Vui lòng điền đầy đủ tất cả các trường.';
-                    isValid = false;
-                }
-
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailInput.value)) {
-                    emailError.textContent = 'Email không hợp lệ.';
-                    emailError.classList.remove('hidden');
-                    isValid = false;
-                }
-
-                const phoneRegex = /^(0|\+84)\d{9,10}$/;
-                if (!phoneRegex.test(phoneInput.value)) {
-                    phoneError.textContent = 'Số điện thoại không hợp lệ (ví dụ: 0xxxxxxxxx hoặc +84xxxxxxxxx).';
-                    phoneError.classList.remove('hidden');
-                    isValid = false;
-                }
-
-                if (isValid) {
-                    formMessageDiv.classList.remove('hidden');
-                    formMessageDiv.classList.remove('text-red-500');
-                    formMessageDiv.classList.add('text-blue-500');
-                    formMessageDiv.textContent = 'Đang gửi tin nhắn...';
-
-                    const formData = new FormData(contactForm);
-                    const data = Object.fromEntries(formData.entries());
-
-                    try {
-                        const response = await fetch(googleSheetUrl, {
-                            method: 'POST',
-                            mode: 'no-cors',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: new URLSearchParams(data).toString(),
-                        });
-
-                        formMessageDiv.classList.remove('text-blue-500');
-                        formMessageDiv.classList.add('text-green-500');
-                        formMessageDiv.textContent = 'Tin nhắn của bạn đã được gửi thành công, chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất';
-                        contactForm.reset();
-
-                    } catch (error) {
-                        console.error('Lỗi khi gửi dữ liệu:', error);
-                        formMessageDiv.classList.remove('text-blue-500');
-                        formMessageDiv.classList.add('text-red-500');
-                        formMessageDiv.textContent = 'Đã xảy ra lỗi khi gửi tin nhắn. Vui lòng thử lại sau.';
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
-                }
-            });
-
-            // --- Active Menu Item on Scroll ---
-            const sections = document.querySelectorAll('main section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            function highlightNavLink() {
-                let current = '';
-
-                const scrollY = window.scrollY;
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (scrollY >= sectionTop - sectionHeight / 3 && scrollY < sectionTop + sectionHeight - sectionHeight / 3) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                if (current === '' && scrollY < sections[0].offsetTop + 100) {
-                    current = sections[0].getAttribute('id');
-                }
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.href.includes(current) && current !== '') {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', highlightNavLink);
-            highlightNavLink();
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
                 });
             });
 
-            // --- FAQ Toggle ---
             const faqQuestions = document.querySelectorAll('.faq-question');
-
             faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
                     const answer = question.nextElementSibling;
                     const plusSign = question.querySelector('span');
-
                     answer.classList.toggle('hidden');
-                    if (answer.classList.contains('hidden')) {
-                        plusSign.textContent = '+';
-                    } else {
-                        plusSign.textContent = '-';
-                    }
+                    plusSign.textContent = answer.classList.contains('hidden') ? '+' : '-';
                 });
             });
 
-            // --- Chat Button Toggle ---
             const mainChatButton = document.getElementById('main-chat-button');
             const chatOptions = document.getElementById('chat-options');
-
-            mainChatButton.addEventListener('click', () => {
+            mainChatButton.addEventListener('click', (e) => {
+                e.stopPropagation();
                 chatOptions.classList.toggle('active');
             });
 
             document.addEventListener('click', (event) => {
-                if (!mainChatButton.contains(event.target) && !chatOptions.contains(event.target)) {
+                if (!chatOptions.contains(event.target) && !mainChatButton.contains(event.target)) {
                     chatOptions.classList.remove('active');
                 }
+            });
+
+            const ctx = document.getElementById('portfolioChart').getContext('2d');
+            const portfolioChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+                    datasets: [
+                        {
+                            label: 'Tăng trưởng doanh số (%)',
+                            data: [0, 15, 20, 25, 30, 35],
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Tỷ lệ chuyển đổi (%)',
+                            data: [1.5, 2.0, 2.5, 3.0, 3.5, 4.0],
+                            borderColor: '#1D4ED8',
+                            backgroundColor: 'rgba(29, 78, 216, 0.1)',
+                            tension: 0.4,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Tỷ lệ (%)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('form-message');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                formMessage.textContent = 'Đang gửi...';
+                formMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
+                
+                setTimeout(() => {
+                    formMessage.textContent = 'Tin nhắn của bạn đã được gửi thành công!';
+                    formMessage.classList.add('text-green-500');
+                    contactForm.reset();
+                }, 2000);
             });
         });
     </script>
