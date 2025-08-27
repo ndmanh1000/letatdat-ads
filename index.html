@@ -151,7 +151,7 @@
             background-size: cover;
             background-position: center;
             color: white;
-            overflow: hidden; /* Ngăn chặn nội dung tràn ra khỏi div */
+            overflow: hidden;
         }
         
         #hero::before {
@@ -244,10 +244,18 @@
                 transform: translateY(-50%);
             }
         }
+
+        #audio-player {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
-   
+    <audio id="audio-player" autoplay>
+        <source src="https://example.com/noi-nay-co-anh.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-gray-900">LÊ TẤT ĐẠT</a>
@@ -326,7 +334,7 @@
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-5xl text-primary-accent mb-4">📊</div>
-                        <h3 class="font-bold text-xl mb-3 text-gray-900">Tối Ưu Hóa Quảng Cáo</h3>
+                        <h-level3 class="font-bold text-xl mb-3 text-gray-900">Tối Ưu Hóa Quảng Cáo</h3>
                         <p class="text-gray-600">Tối ưu hóa hiệu suất các chiến dịch quảng cáo trên Google, Facebook, TikTok.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-center service-card" data-aos="fade-up" data-aos-delay="300">
@@ -555,6 +563,12 @@
                 once: true,
                 easing: 'ease-in-out',
                 delay: 200,
+            });
+
+            // Auto-play audio on page load
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.play().catch(function(error) {
+                console.error('Audio playback failed:', error);
             });
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
